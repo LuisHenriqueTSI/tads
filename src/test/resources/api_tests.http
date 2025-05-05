@@ -1,0 +1,14 @@
+### 1. Criar filme
+POST http://localhost:8080/api/filmes
+Content-Type: application/json
+
+{
+  "titulo": "Interestelar",
+  "duracao": 169,
+  "genero": "Ficção Científica",
+  "classificacao": "12",
+  "diretor": "Christopher Nolan"
+}
+
+### 2. Listar filmes
+GET http://localhost:8080/api/filmes
