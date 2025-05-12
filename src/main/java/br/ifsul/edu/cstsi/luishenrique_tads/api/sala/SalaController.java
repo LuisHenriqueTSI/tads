@@ -1,6 +1,5 @@
 package br.ifsul.edu.cstsi.luishenrique_tads.api.sala;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -9,10 +8,14 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api/salas")
-@RequiredArgsConstructor
 public class SalaController {
 
     private final SalaRepository repository;
+
+    // Construtor manual para injeção de dependência
+    public SalaController(SalaRepository repository) {
+        this.repository = repository;
+    }
 
     @PostMapping
     public ResponseEntity<SalaDTOResponse> create(
@@ -38,6 +41,7 @@ public class SalaController {
         URI uri = uriBuilder.path("/api/salas/{id}").buildAndExpand(saved.getId()).toUri();
         return ResponseEntity.created(uri).body(toDTO(saved));
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<SalaDTOResponse> atualizarSala(
             @PathVariable Long id,
@@ -59,6 +63,7 @@ public class SalaController {
         Sala atualizada = repository.save(sala);
         return ResponseEntity.ok(toDTO(atualizada));
     }
+
     private SalaDTOResponse toDTO(Sala sala) {
         return new SalaDTOResponse(
                 sala.getId(),

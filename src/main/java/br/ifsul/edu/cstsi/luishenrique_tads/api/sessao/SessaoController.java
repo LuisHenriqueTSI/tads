@@ -1,7 +1,6 @@
 package br.ifsul.edu.cstsi.luishenrique_tads.api.sessao;
 
 import br.ifsul.edu.cstsi.luishenrique_tads.api.filme.FilmeRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -11,11 +10,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/sessoes")
-@RequiredArgsConstructor
 public class SessaoController {
 
     private final SessaoRepository sessaoRepository;
     private final FilmeRepository filmeRepository;
+
+    // Construtor manual (removendo Lombok)
+    public SessaoController(SessaoRepository sessaoRepository, FilmeRepository filmeRepository) {
+        this.sessaoRepository = sessaoRepository;
+        this.filmeRepository = filmeRepository;
+    }
 
     @PostMapping
     public ResponseEntity<SessaoDTOResponse> criar(

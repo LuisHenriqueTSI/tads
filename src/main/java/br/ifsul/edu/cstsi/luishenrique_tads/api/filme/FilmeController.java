@@ -1,19 +1,21 @@
 package br.ifsul.edu.cstsi.luishenrique_tads.api.filme;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.net.URI;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/filmes")
-@RequiredArgsConstructor
 public class FilmeController {
 
     private final FilmeRepository repository;
+
+    // Injeção de dependência manual via construtor
+    public FilmeController(FilmeRepository repository) {
+        this.repository = repository;
+    }
 
     @PostMapping
     public ResponseEntity<FilmeDTOResponse> criar(

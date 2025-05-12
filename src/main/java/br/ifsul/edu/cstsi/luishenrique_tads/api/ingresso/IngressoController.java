@@ -1,7 +1,6 @@
 package br.ifsul.edu.cstsi.luishenrique_tads.api.ingresso;
 
 import br.ifsul.edu.cstsi.luishenrique_tads.api.sessao.SessaoRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -12,11 +11,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/ingressos")
-@RequiredArgsConstructor
 public class IngressoController {
 
     private final IngressoRepository ingressoRepository;
     private final SessaoRepository sessaoRepository;
+
+    // Construtor manual para inicializar os repositórios
+    public IngressoController(IngressoRepository ingressoRepository, SessaoRepository sessaoRepository) {
+        this.ingressoRepository = ingressoRepository;
+        this.sessaoRepository = sessaoRepository;
+    }
 
     // ========== DTOs ==========
     public record IngressoDTOPost(Integer tipo, Long sessaoId) {}
@@ -36,7 +40,6 @@ public class IngressoController {
             @RequestBody IngressoDTOPost dto,
             UriComponentsBuilder uriBuilder) {
 
-        // Validação manual
         if (dto.tipo() == null || dto.sessaoId() == null) {
             throw new RuntimeException("Campos obrigatórios não informados");
         }
@@ -78,7 +81,6 @@ public class IngressoController {
             @PathVariable Long id,
             @RequestBody IngressoDTOPut dto) {
 
-        // Validação manual
         if (dto.tipo() == null) {
             throw new RuntimeException("Tipo não informado");
         }
@@ -102,7 +104,7 @@ public class IngressoController {
         return ResponseEntity.noContent().build();
     }
 
-    // ========== Métod auxiliar ==========
+    // ========== Método auxiliar ==========
     private IngressoResponse toResponse(Ingresso ingresso) {
         return new IngressoResponse(
                 ingresso.getId(),
