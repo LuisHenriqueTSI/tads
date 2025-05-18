@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/salas")
@@ -62,6 +63,24 @@ public class SalaController {
 
         Sala atualizada = repository.save(sala);
         return ResponseEntity.ok(toDTO(atualizada));
+    }
+
+    // Método GET para listar todas as salas
+    @GetMapping
+    public ResponseEntity<List<SalaDTOResponse>> listarSalas() {
+        List<Sala> salas = repository.findAll();
+        List<SalaDTOResponse> dtos = salas.stream()
+                .map(this::toDTO)
+                .toList();
+        return ResponseEntity.ok(dtos);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarSala(@PathVariable Long id) {
+        if (!repository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     private SalaDTOResponse toDTO(Sala sala) {

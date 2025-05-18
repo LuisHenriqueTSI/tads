@@ -6,13 +6,13 @@ services:
       MARIADB_ROOT_PASSWORD: rootpassword
       MARIADB_DATABASE: luishenrique_tads
       MARIADB_USER: mariadb
-      MARIADB_PASSWORD: ${MARIADB_SECRET:-mariadb}
+      MARIADB_PASSWORD: mariadb
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "mariadb", "-p${MARIADB_SECRET:-mariadb}"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "mariadb", "-pmariadb"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -22,17 +22,15 @@ services:
     container_name: cinema-app
     depends_on:
       mariadb:
-       condition: service_started
+        condition: service_healthy
     ports:
       - "8080:8080"
     volumes:
       - .:/app
     working_dir: /app
-    command: ./mvnw spring-boot:run
+    command: ./mvnw spring-boot:run -Dspring-boot.run.profiles=docker
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/luishenrique_tads
-      SPRING_DATASOURCE_USERNAME: mariadb
-      SPRING_DATASOURCE_PASSWORD: ${MARIADB_SECRET:-mariadb}
+      SPRING_PROFILES_ACTIVE: docker
 
 volumes:
   mariadb_data:
