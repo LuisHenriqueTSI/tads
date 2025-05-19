@@ -240,19 +240,3 @@ Você pode seguir essa lógica para as demais rotas, substituindo a URL e o corp
 * RESTful API
 
 ---
-
-## 📂 Estrutura Esperada do Projeto
-
-```
-/seu-projeto/
-│
-├── docker-compose.yml
-├── src/
-│   └── main/
-│       └── java/
-│       └── resources/
-├── .env (opcional)
-└── README.md
-```
-
----
