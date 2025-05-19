@@ -4,6 +4,13 @@ Entendi perfeitamente! Aqui está a tabela atualizada com as **rotas completas**
 
 ## ✅ **Todas as Rotas da API**
 
+> ⚠️ **Atenção**: Todas as rotas abaixo são **protegidas por autenticação HTTP Basic**.
+> Para acessar, use:
+>
+> * **Usuário**: `admin`
+> * **Senha**: `admin`
+
+
 ### 🎬 `http://localhost:8080/api/filmes`
 
 | Método | Rota                                              | Descrição                                       |
