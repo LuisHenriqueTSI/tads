@@ -98,8 +98,26 @@ Use as seguintes credenciais para acessar:
 
 ## 🧪 Como Testar as Rotas da API
 
-Você pode testar as rotas de duas formas: **via terminal com `curl`** ou **usando o Postman**.
+Você pode testar as rotas de duas formas: **via terminal com `curl`** ou **usando o Postman** ou na aba Endpoints do intellij.
 
+---
+### Testando na aba endpoints (Intellij)
+
+Ao clicar sobre a requisição, adicione a linha logo abaixo:
+
+```bash
+Authorization: Basic YWRtaW46YWRtaW4=
+```
+
+por exemplo:
+```bash
+
+GET http://localhost:8080/api/filmes
+Authorization: Basic YWRtaW46YWRtaW4=
+
+```
+
+que é a mesma coisa que admin:admin (por algum motivo, não está convertendo na base 64)
 ---
 
 ### 🧰 Testando com `curl` (Terminal)
