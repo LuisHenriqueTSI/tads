@@ -101,7 +101,7 @@ Use as seguintes credenciais para acessar:
 Você pode testar as rotas de duas formas: **via terminal com `curl`** ou **usando o Postman** ou na aba Endpoints do intellij.
 
 ---
-### Testando na aba endpoints (Intellij)
+### Testando na aba endpoints por Authorization: Basic (Intellij)
 
 Ao clicar sobre a requisição, adicione a linha logo abaixo:
 
@@ -114,6 +114,29 @@ por exemplo:
 
 GET http://localhost:8080/api/filmes
 Authorization: Basic YWRtaW46YWRtaW4=
+
+```
+### Testando por Authorization: Bearer
+
+devo ir na rota de login:
+
+```bash
+
+###
+POST http://localhost:8080/api/v1/login
+Content-Type: application/json
+
+{
+  "user": "admin",
+  "password": "admin"
+}
+```
+
+onde eu consigo o token, e vou na rota de filme, por exemplo:
+```bash
+###
+GET http://localhost:8080/api/filmes
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6Miwic3ViIjoiYWRtaW4iLCJpYXQiOjE3NTAwMjA3MzUsImV4cCI6MTc1MDEwNzEzNX0.k1TpqkzVnTczxnIOzMIxKvjwiAasUxvH-UGwpZGHxzY
 
 ```
 
