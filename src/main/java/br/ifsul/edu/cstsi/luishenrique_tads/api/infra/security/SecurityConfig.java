@@ -40,19 +40,26 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> {
-                    // Public endpoints
+                    // Rotas públicas do Swagger/OpenAPI
+                    authorize.requestMatchers(
+                            "/v3/api-docs/**",
+                            "/swagger-ui.html",
+                            "/swagger-ui/**",
+                            "/swagger-resources/**",
+                            "/webjars/**"
+                    ).permitAll();
+
+                    // Rotas públicas da aplicação
                     authorize.requestMatchers(HttpMethod.POST, "/api/v1/login").permitAll();
 
-                    // Protect FilmeController endpoints
+                    // Rotas protegidas
                     authorize.requestMatchers("/api/filmes/**").authenticated();
 
-                    // Allow all other endpoints without authentication
-                    authorize.anyRequest().permitAll();
+                    // Todas as outras rotas exigem autenticação
+                    authorize.anyRequest().authenticated();
                 })
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
-    // We're now using database authentication with JPA, so we don't need the InMemoryUserDetailsManager
 }
