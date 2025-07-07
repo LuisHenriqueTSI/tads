@@ -24,6 +24,11 @@ Antes de começar, certifique-se de que o novo PC tem os seguintes softwares ins
   ```
 ---
 
+navegue até a raiz do projeto e de o comando abaixo para dar permissão ao usuario:
+
+```bash
+sudo chown -R $USER:$USER /home/tsi/Documentos/luisHenriqueTSI/tads
+```
 ### ✅ 2. Verifique se o Docker e o Docker Compose estão instalados
 
 Abra o terminal e execute:
