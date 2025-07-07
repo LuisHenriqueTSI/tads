@@ -92,6 +92,9 @@ Se o projeto precisar de estrutura ou dados iniciais no banco, confira se:
 
 ## 🔐 Acesso à API
 
+para acessar através da interface swagger:
+http://localhost:8080/swagger-ui/index.html
+
 Todas as rotas da API são protegidas por autenticação HTTP Basic.
 
 Use as seguintes credenciais para acessar:
