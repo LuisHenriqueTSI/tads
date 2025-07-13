@@ -54,6 +54,7 @@ public class SecurityConfig {
 
                     // Rotas protegidas
                     authorize.requestMatchers("/api/filmes/**").authenticated();
+//                    authorize.requestMatchers("/api/filmes/**").hasRole("ADMIN");
 
                     // Todas as outras rotas exigem autenticação
                     authorize.anyRequest().authenticated();

@@ -1,4 +1,4 @@
-package com.example.produtos.api.infra.doc;
+package br.ifsul.edu.cstsi.luishenrique_tads.api.infra.doc;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

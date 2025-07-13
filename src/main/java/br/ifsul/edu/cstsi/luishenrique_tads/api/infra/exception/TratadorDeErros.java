@@ -1,4 +1,5 @@
-package com.example.produtos.api.infra.exception;
+package br.ifsul.edu.cstsi.luishenrique_tads.api.infra.exception;
+
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -31,13 +32,13 @@ public class TratadorDeErros extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().build();
     }
 
-    @ExceptionHandler(ValidacaoEmailJaCadastradoException.class)
-    public ResponseEntity trataErro400(ValidacaoEmailJaCadastradoException ex){ //400 - Bad Request para Erro de Validação das Regras de Negócio
+    @ExceptionHandler(br.ifsul.edu.cstsi.luishenrique_tads.api.infra.exception.ValidacaoEmailJaCadastradoException.class)
+    public ResponseEntity trataErro400(br.ifsul.edu.cstsi.luishenrique_tads.api.infra.exception.ValidacaoEmailJaCadastradoException ex){ //400 - Bad Request para Erro de Validação das Regras de Negócio
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
-    @ExceptionHandler(ValidacaoEmailAindaNaoConfirmadoException.class)
-    public ResponseEntity trataErro400(ValidacaoEmailAindaNaoConfirmadoException ex){ //400 - Bad Request para Erro de Validação das Regras de Negócio
+    @ExceptionHandler(br.ifsul.edu.cstsi.luishenrique_tads.api.infra.exception.ValidacaoEmailAindaNaoConfirmadoException.class)
+    public ResponseEntity trataErro400(br.ifsul.edu.cstsi.luishenrique_tads.api.infra.exception.ValidacaoEmailAindaNaoConfirmadoException ex){ //400 - Bad Request para Erro de Validação das Regras de Negócio
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
